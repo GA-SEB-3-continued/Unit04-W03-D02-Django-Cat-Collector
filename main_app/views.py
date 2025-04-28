@@ -7,7 +7,7 @@ from django.http import HttpResponse
 # function for the home route
 
 def home(request):
-    return render("<h1>Hello From home route</h1>")
+    return render(request, "index.html")
 
 def about(request):
     return render(request,"about.html")
