@@ -6,5 +6,8 @@ urlpatterns = [
     path("about/",views.about, name="about"),
     path("donate/",views.donate, name="donate"),
     path('cats/',views.cats_index, name="cat-index"),
-    path('cats/<int:cat_id>',views.cat_detail, name="cat-detail")
+    path('cats/<int:cat_id>/',views.cat_detail, name="cat-detail"),
+
+
+    path("cats/create/", views.CatCreate.as_view(), name='cat-create')
 ]
