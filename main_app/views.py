@@ -6,7 +6,7 @@ from django.http import HttpResponse
 # importing the cat model
 from .models import Cat
 
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 # function for the home route
@@ -36,4 +36,14 @@ def cat_detail(request, cat_id):
 class CatCreate(CreateView):
     model = Cat
     fields = ['name', 'breed', 'description', 'age']
+    success_url = "/cats/"
+
+
+class CatUpdate(UpdateView):
+    model = Cat
+
+    fields = ["breed","description","age"]
+
+class CatDelete(DeleteView):
+    model = Cat
     success_url = "/cats/"
