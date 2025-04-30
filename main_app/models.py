@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -29,7 +31,23 @@ class Feeding(models.Model):
     # if cat is deleted all its related fields will be deleted
     cat = models.ForeignKey(Cat, on_delete=models.CASCADE)
 
+        # Define the default order of feedings
+    class Meta:
+        ordering = ['-date']  # This line makes the newest feedings appear first
+
 
     def __str__(self):
         # Nice method for obtaining the friendly value of a Field.choice
         return f"{self.meal} on {self.date}"
+    
+
+# Add the Toy model
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('toy-detail', kwargs={'pk': self.id})
