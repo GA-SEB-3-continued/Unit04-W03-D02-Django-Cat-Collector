@@ -19,6 +19,11 @@ class Cat(models.Model):
     toys = models.ManyToManyField("Toy")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def get_absolute_url(self):
+        # Use the 'reverse' function to dynamically find the URL for viewing this cat's details
+        return reverse('cat-detail', kwargs={'cat_id': self.id})
+
+
 
 
     def __str__(self):
