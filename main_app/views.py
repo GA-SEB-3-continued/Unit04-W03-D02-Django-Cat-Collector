@@ -8,6 +8,7 @@ from .models import Cat
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from .forms import FeedingForm
 
 # function for the home route
 
@@ -28,7 +29,12 @@ def cats_index(request):
 
 def cat_detail(request, cat_id):
     cat = Cat.objects.get(id=cat_id)
-    return render(request, 'cats/detail.html',{"cat":cat})
+
+    feeding_form = FeedingForm()
+    return render(request, 'cats/detail.html',{
+        "cat":cat,
+        
+        'feeding_form':feeding_form})
 
 
 # Class Based Views
